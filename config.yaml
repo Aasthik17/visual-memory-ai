@@ -1,0 +1,100 @@
+# Configuration file for Visual Memory AI
+
+# Dataset Configuration
+data:
+  root_dir: "./data/lamem"
+  images_dir: "./data/lamem/images"
+  metadata_file: "./data/lamem/metadata.csv"
+  train_ratio: 0.7
+  val_ratio: 0.15
+  test_ratio: 0.15
+  random_seed: 42
+
+# Model Configuration
+model:
+  architecture: "resnet50"  # Options: resnet50, resnet101, vit_b_16, vit_b_32
+  pretrained: true
+  dropout: 0.5
+  hidden_dim: 512
+
+# Training Configuration
+training:
+  batch_size: 32
+  num_epochs: 50
+  learning_rate: 0.0001
+  weight_decay: 0.00001
+  num_workers: 4
+  device: "cuda"  # Options: cuda, cpu, auto
+  
+  # Learning rate scheduler
+  scheduler:
+    type: "ReduceLROnPlateau"
+    mode: "min"
+    factor: 0.5
+    patience: 5
+    
+  # Early stopping
+  early_stopping:
+    patience: 10
+    min_delta: 0.0001
+
+# Data Augmentation
+augmentation:
+  train:
+    resize: 256
+    crop_size: 224
+    horizontal_flip: true
+    flip_prob: 0.5
+    color_jitter:
+      brightness: 0.2
+      contrast: 0.2
+      saturation: 0.2
+      hue: 0.1
+  
+  val_test:
+    resize: 224
+    crop_size: 224
+
+# Normalization (ImageNet statistics)
+normalization:
+  mean: [0.485, 0.456, 0.406]
+  std: [0.229, 0.224, 0.225]
+
+# Checkpointing
+checkpointing:
+  dir: "./checkpoints"
+  save_best: true
+  save_last: true
+  save_frequency: 5  # Save every N epochs
+
+# Logging
+logging:
+  tensorboard_dir: "./logs"
+  log_frequency: 10  # Log every N batches
+  
+# Explainability
+explainability:
+  method: "gradcam"  # Options: gradcam, gradcam++
+  colormap: "jet"
+  alpha: 0.5  # Overlay transparency
+
+# Similarity Search
+similarity:
+  index_path: "./search_index.pkl"
+  top_k: 5
+  metric: "cosine"  # Options: cosine, euclidean
+  
+# Streamlit App
+app:
+  title: "Visual Memory AI"
+  port: 8501
+  theme: "light"  # Options: light, dark
+  max_upload_size: 10  # MB
+
+# Paths
+paths:
+  models: "./models"
+  data: "./data"
+  outputs: "./outputs"
+  visualizations: "./outputs/visualizations"
+  predictions: "./outputs/predictions"

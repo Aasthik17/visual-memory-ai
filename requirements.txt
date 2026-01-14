@@ -1,0 +1,28 @@
+# Core Deep Learning
+torch>=2.0.0
+torchvision>=0.15.0
+numpy>=1.24.0
+
+# Data Processing
+pandas>=2.0.0
+Pillow>=9.5.0
+opencv-python>=4.7.0
+scikit-learn>=1.2.0
+scipy>=1.10.0
+
+# Visualization & UI
+streamlit>=1.28.0
+matplotlib>=3.7.0
+seaborn>=0.12.0
+
+# Training & Monitoring
+tensorboard>=2.13.0
+tqdm>=4.65.0
+
+# Utilities
+pyyaml>=6.0
+python-dotenv>=1.0.0
+
+# Optional (for advanced features)
+# transformers>=4.30.0  # For Vision Transformers
+# timm>=0.9.0  # PyTorch Image Models
