@@ -1,0 +1,5 @@
+# Ignore dataset directory
+data/lamem/
+
+# Ignore Python virtual environment
+venv/
